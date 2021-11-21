@@ -1,4 +1,4 @@
-import std/strformat, tables
+import std/strformat, tables, sequtils
 
 type
   Player = ref object
@@ -39,14 +39,25 @@ statMap["wizard"] = Race(health: 80, attack: 15)
 
 echo statMap
 
+proc getRaces(): seq[string] =
+  var raceSeq: seq[string]
+  for k in statMap.keys:
+    raceSeq.add(k)
+  return raceSeq
+
+echo getRaces()
+
+echo "candy" in getRaces()
+
+
 type
-  Skill = ref object
+  Skill = object
     id: int
     name: string
     damage: int
 
-  proc `$`(s: Skill) =
-    result = fmt"{s.name}"
+# proc `$`(s: Skill): string =
+#   result = fmt"{s.name}"
 
 var skillMap = initTable[string, seq[Skill]]()
 skillMap["warrior"] = @[Skill(id: 1, name: "head butt", damage: 100)]
