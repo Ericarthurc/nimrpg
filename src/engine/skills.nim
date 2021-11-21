@@ -48,5 +48,3 @@ skillTable["thief"] = @[]
 skillTable["guardian"] = @[]
 
 skillTable["necromancer"] = @[]
-
-echo skillTable

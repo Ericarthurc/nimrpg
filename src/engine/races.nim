@@ -1,7 +1,7 @@
 import tables
 
 type
-  Role* = object
+  Race* = object
     health*: int
     mana*: int
     attack*: int
@@ -10,8 +10,8 @@ type
     speed*: int
     luck*: int
 
-var roleTable = initTable[string, Role]()
-roleTable["human"] = Role(
+var raceTable* = initTable[string, Race]()
+raceTable["human"] = Race(
   health: 15,
     mana: 10,
     attack: 6,
@@ -20,7 +20,7 @@ roleTable["human"] = Role(
     speed: 2,
     luck: 2,
   )
-roleTable["elf"] = Role(
+raceTable["elf"] = Race(
     health: 10,
     mana: 20,
     attack: 8,
@@ -29,7 +29,7 @@ roleTable["elf"] = Role(
     speed: 5,
     luck: 3,
   )
-roleTable["darkelf"] = Role(
+raceTable["darkelf"] = Race(
     health: 15,
     mana: 15,
     attack: 8,
@@ -38,7 +38,7 @@ roleTable["darkelf"] = Role(
     speed: 4,
     luck: 1,
   )
-roleTable["undead"] = Role(
+raceTable["undead"] = Race(
     health: -5,
     mana: 15,
     attack: 10,
@@ -47,7 +47,7 @@ roleTable["undead"] = Role(
     speed: 0,
     luck: 0,
   )
-roleTable["char"] = Role(
+raceTable["char"] = Race(
     health: 20,
     mana: 5,
     attack: 3,
@@ -56,7 +56,7 @@ roleTable["char"] = Role(
     speed: 0,
     luck: 10,
   )
-roleTable["dwarf"] = Role(
+raceTable["dwarf"] = Race(
     health: 7,
     mana: 7,
     attack: 4,
@@ -65,7 +65,7 @@ roleTable["dwarf"] = Role(
     speed: 2,
     luck: 5,
   )
-roleTable["orc"] = Role(
+raceTable["orc"] = Race(
     health: 17,
     mana: 8,
     attack: 10,
@@ -75,13 +75,11 @@ roleTable["orc"] = Role(
     luck: 0,
   )
 
-proc getRolesName*(): seq[string] =
+proc getRacesName*(): seq[string] =
   var raceSeq: seq[string]
-  for k in roleTable.keys:
+  for k in raceTable.keys:
     raceSeq.add(k)
   return raceSeq
 
-proc getRole*(race: string): Role =
-  return roleTable[race]
-
-echo getRolesName()
+proc getRace*(race: string): Race =
+  return raceTable[race]
